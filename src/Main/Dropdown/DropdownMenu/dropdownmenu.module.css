@@ -1,0 +1,192 @@
+.dropdownWrap {
+    padding: 7px 0;
+    position: absolute;
+    z-index: 100;
+    min-width: 165px;
+    border: 1px solid var(--grey_c4);
+    right: 50%;
+    transform: translate(50%, 10px);
+    background-color: var(--white);
+}
+
+.dropdownList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropdownList__item {
+    width: 100%;
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: transparent;
+    transition: background-color .3s ease-in-out;
+}
+
+.dropdownList__item:hover,
+.dropdownList__item:focus {
+    background-color: var(--grey_f4);
+    transition: background-color .3s ease-in-out;
+}
+
+.dropdownList__itemImg {
+    margin-right: 8px;
+}
+
+.dropdownList__itemText {
+    color: var(--grey_99);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+}
+
+.dropdownList__itemBtn {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.changeBtn {
+    position: relative;
+}
+
+.changeForm {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 5px 10px;
+    height: 50px;
+    background-color: var(--grey_c4);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.changeInput {
+    width: 200px;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+    color: var(--grey_99);
+    background-color: var(--grey_f4);
+    border: none;
+    outline: none;
+}
+
+.applyChangeBtn {
+    padding: 5px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+    color: var(--white);
+    background-color: var(--green_light);
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+}
+
+.applyChangeBtn:hover,
+.applyChangeBtn:focus {
+    background-color: var(--green_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.disabledButton,
+.disabledButton:hover,
+.disabledButton:focus {
+    cursor: default;
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* deleteWindow */
+
+.deleteMenuWrap {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: default;
+}
+
+.deleteWindow {
+    padding: 25px 80px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+}
+
+.deleteWindow__closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__closeButton:hover,
+.deleteWindow__closeButton:focus {
+    opacity: 0.5;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__title {
+    margin-bottom: 25px;
+    color: var(--black);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.deleteWindow__deleteBtn {
+    margin-bottom: 10px;
+    padding: 20px 50px;
+    color: var(--white);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    background-color: var(--red);
+    transition: background-color .3s ease-in-out;
+}
+
+.deleteWindow__deleteBtn:hover,
+.deleteWindow__deleteBtn:focus {
+    background-color: var(--red_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.deleteWindow__cancelBtn {
+    color: var(--black);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+    text-decoration: underline;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__cancelBtn:hover,
+.deleteWindow__cancelBtn:focus {
+    opacity: 0.5;
+    transition: opacity .3s ease-in-out;
+}

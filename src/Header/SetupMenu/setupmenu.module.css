@@ -1,0 +1,110 @@
+.setupWrap {
+    position: absolute;
+    padding: 15px 30px;
+    top: calc(100% + 20px);
+    left: -50%;
+    background-color: var(--grey_7b);
+    z-index: 100;
+}
+
+.setupTitle {
+    margin-bottom: 10px;
+    color: var(--white);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+}
+
+.setupForm {
+    margin-bottom: 25px;
+}
+
+.setupInputWrap:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.setupForm__input_descr {
+    margin-bottom: 5px;
+    color: var(--white);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+}
+
+.inputWrap {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.setupForm__input {
+    margin-right: 15px;
+    padding: 5px 15px;
+    padding-right: 0;
+    width: 150px;
+    color: var(--grey_99);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    outline: none;
+    border: none;
+    background-color: var(--grey_f4);
+    transition: background-color .3s ease-in-out;
+}
+
+.setupForm__input:hover,
+.setupForm__input:focus {
+    background-color: var(--grey_dc);
+    transition: background-color .3s ease-in-out;
+}
+
+.setupForm__button {
+    padding: 15px;
+    width: 100%;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    background-color: var(--green_light);
+    transition: background-color .3s ease-in-out;
+}
+
+.setupForm__button:hover,
+.setupForm__button:focus {
+    background-color: var(--green_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.setupForm__button_dev {
+    background-color: var(--red_column);
+    transition: background-color .3s ease-in-out;
+}
+
+.setupForm__button_dev:hover,
+.setupForm__button_dev:focus {
+    background-color: var(--red_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.closeSetupButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url('../../assets/images/cross.svg');
+    transition: background-image .3s ease-in-out;
+}
+
+.closeSetupButton:hover {
+    background-image: url('../../assets/images/cross-hover.svg');
+    transition: background-image .3s ease-in-out;
+}

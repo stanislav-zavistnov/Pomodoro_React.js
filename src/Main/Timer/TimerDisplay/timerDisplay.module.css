@@ -1,0 +1,118 @@
+.timerDisplayWrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 70px 175px 105px;
+    background-color: var(--grey_f4);
+}
+
+.currentTimeWrap {
+    position: relative;
+    margin-bottom: -5px;
+}
+
+.currentTime {
+    color: var(--blak);
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.increaseButton {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    right: -75px;
+    background-image: url('../../../assets/images/increaseButton.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: translate(0, -50%);
+    transition: background-image .3s ease-in-out;
+}
+
+.increaseButton:hover {
+    background-image: url('../../../assets/images/increaseButton_hover.svg');
+    transition: background-image .3s ease-in-out;
+}
+
+.disabled,
+.disabled:hover {
+    background-image: url('../../../assets/images/increaseButton.svg');
+    cursor: auto;
+}
+
+.timerDisplayDescrWrap {
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.timerDisplayTitle,
+.timerDisplayDescr {
+    color: var(--grey_99);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.timerDisplayDescr {
+    color: var(--blak);
+}
+
+.timerDisplayButtonsWrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.startButton,
+.stopButton {
+    padding: 19px 50px;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+}
+
+.startButton {
+    margin-right: 25px;
+    color: var(--white);
+    background-color: var(--green_light);
+    outline: none;
+    transition: background-color .3s ease-in-out;
+}
+
+.startButton:hover {
+    background-color: var(--green_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.stopButton {
+    color: var(--grey_c4);
+    background-color: transparent;
+    outline: 2px solid var(--grey_c4);
+    transition: color .3s ease-in-out, background-color .3s ease-in-out, outline-color .3s ease-in-out;
+}
+
+.stopButton:hover,
+.stopButton:focus {
+    color: var(--white);
+    outline-color: var(--red);
+    background-color: var(--red);
+    transition: color .3s ease-in-out, background-color .3s ease-in-out, outline-color .3s ease-in-out;
+}
+
+.stopButton__active {
+    color: var(--red);
+    outline-color: var(--red);
+    background-color: transparent;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out, outline-color .3s ease-in-out;
+}

@@ -1,0 +1,82 @@
+.deleteMenuWrap {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: default;
+}
+
+.deleteWindow {
+    padding: 25px 80px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+}
+
+.deleteWindow__closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__closeButton:hover,
+.deleteWindow__closeButton:focus {
+    opacity: 0.5;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__title {
+    margin-bottom: 25px;
+    color: var(--black);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.deleteWindow__deleteBtn {
+    margin-bottom: 10px;
+    padding: 20px 50px;
+    color: var(--white);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    background-color: var(--red);
+    transition: background-color .3s ease-in-out;
+}
+
+.deleteWindow__deleteBtn:hover,
+.deleteWindow__deleteBtn:focus {
+    background-color: var(--red_dark);
+    transition: background-color .3s ease-in-out;
+}
+
+.deleteWindow__cancelBtn {
+    color: var(--black);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+    text-decoration: underline;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+.deleteWindow__cancelBtn:hover,
+.deleteWindow__cancelBtn:focus {
+    opacity: 0.5;
+    transition: opacity .3s ease-in-out;
+}

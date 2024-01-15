@@ -1,0 +1,25 @@
+.manual {
+    margin-bottom: 25px;
+}
+
+.manualList {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.manualList__item::before {
+    content: "\2022";
+    color: var(--red_dark);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.manualList__item {
+    color: var(--black);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 33px;
+}

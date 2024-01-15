@@ -1,0 +1,147 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #333333;
+  --red: #DC3E22;
+  --red_column: #EA8A79;
+  --red_dark: #B7280F;
+  --grey_f4: #F4F4F4;
+  --grey_99: #999999;
+  --grey_dc: #dcdcdc;
+  --grey_c4: #C4C4C4;
+  --grey_e4: #E4E4E4;
+  --grey_ec: #ECECEC;
+  --grey_7b: #7B7B7B;
+  --green_light: #A8B64F;
+  --green_dark: #899441;
+  --bg_focus: #FFDDA9;
+  --bg_pauseTime: #DFDCFE;
+  --bg_pauseCount: #C5F1FF;
+}
+
+@font-face {
+  font-family: "SF_UI";
+  src: local("SF_UI_Regular"),
+    url("./assets/fonts/SFUIDisplay-Regular.woff") format("woff"),
+    url("./assets/fonts/SFUIDisplay-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF_UI";
+  src: local("SF_UI_Light"),
+    url("./assets/fonts/SFUIText-Light.woff") format("woff"),
+    url("./assets/fonts/SFUIText-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF_UI";
+  src: local("SF_UI_Medium"),
+    url("./assets/fonts/SFUIDisplay-Medium.woff") format("woff"),
+    url("./assets/fonts/SFUIDisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF_UI";
+  src: local("SF_UI_Bold"),
+    url("./assets/fonts/SFUIDisplay-Bold.woff") format("woff"),
+    url("./assets/fonts/SFUIDisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF_UI";
+  src: local("SF_UI_Thin"),
+    url("./assets/fonts/SFUIDisplay-Thin.woff") format("woff"),
+    url("./assets/fonts/SFUIDisplay-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  font-family: 'SF_UI', sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+
+  .container {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}

@@ -1,0 +1,15 @@
+.dropdownButtonWrap {
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity .3s ease-in-out;
+}
+
+.dropdownButtonWrap:hover .dropdownButtonIcon,
+.dropdownButtonWrap:focus .dropdownButtonIcon {
+    opacity: 0.5;
+    transition: opacity .3s ease-in-out;
+}
+
+.dropdownButton {
+    position: relative;
+}
