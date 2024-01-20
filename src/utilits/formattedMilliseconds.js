@@ -1,4 +1,4 @@
-export function formattedMilliseconds(milliseconds) {
+export function formattedMilliseconds(milliseconds, isEng = true) {
 
     const seconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
@@ -10,15 +10,15 @@ export function formattedMilliseconds(milliseconds) {
     let formattedTime = '';
 
     if (hours > 0) {
-        formattedTime += `${hours}ч `;
+        formattedTime += `${hours}${isEng ? 'h ' : 'ч '}`;
     }
 
     if (remainingMinutes > 0 || hours === 0) {
-        formattedTime += `${remainingMinutes}мин `;
+        formattedTime += `${remainingMinutes}${isEng ? 'min ' : 'мин '}`;
     }
 
     if (remainingSeconds > 0 || minutes === 0) {
-        formattedTime += `${remainingSeconds}сек`;
+        formattedTime +=  `${remainingSeconds}${isEng ? 'sec' : 'сек'}`;
     }
 
     return formattedTime.trim();

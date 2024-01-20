@@ -11,6 +11,7 @@ import { mergeStatisticsWithZeroes } from "../utilits/mergeStatisticsWithZeroes"
 export function Statistic() {
     const statisticArray = useSelector<RootState, Array<IDayStat>>(state => state.statistics);
     const [currentArray, setCurrentArray] = useState(mergeStatisticsWithZeroes(statisticArray, getCurrentThisWeekDays()));
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = e.target.value;
         if (selectedValue === 'thisWeek') {
@@ -28,17 +29,17 @@ export function Statistic() {
         <div className="container">
             <div className={styles.statHeaderWrap}>
                 <p className={styles.statTitle}>
-                    Ваша активность
+                    {isEnglishLanguage ? 'Your activity' : 'Ваша активность'}
                 </p>
                 <select className={styles.statSelect} onChange={handleSelectChange}>
                     <option value="thisWeek">
-                        Эта неделя
+                        {isEnglishLanguage ? 'This week' : 'Эта неделя'}
                     </option>
                     <option value="lastWeek">
-                        Прошлая неделя
+                        {isEnglishLanguage ? 'Last week' : 'Прошлая неделя'}
                     </option>
                     <option value="twoWeekAgo">
-                        2 недели назад
+                        {isEnglishLanguage ? '2 weeks ago' : '2 недели назад'}
                     </option>
                 </select>
             </div>

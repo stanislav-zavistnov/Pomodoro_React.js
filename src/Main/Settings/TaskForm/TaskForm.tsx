@@ -10,13 +10,14 @@ export function TaskForm() {
     const statisticArray = useSelector<RootState, Array<IDayStat>>(state => state.statistics);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [valid, setValid] = useState(true);
-    const pomodorLength = useSelector<RootState, number>(state => state.pomodorLength)
+    const pomodorLength = useSelector<RootState, number>(state => state.pomodorLength);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     function handleChange() {
         if (inputRef.current) {
             if (inputRef.current.value) {
                 setValid(true);
             } else {
-                inputRef.current.placeholder = 'Введите название задачи';
+                inputRef.current.placeholder = isEnglishLanguage ? 'Name a task' : 'Введите название задачи';
             }
         }
     }
@@ -36,10 +37,12 @@ export function TaskForm() {
                 }
                 dispatch(createNewTask(objectTask));
                 inputRef.current.value = '';
-                inputRef.current.placeholder = 'Введите название задачи';
+                inputRef.current.placeholder = isEnglishLanguage ? 'Name a task' : 'Введите название задачи';
                 setValid(true);
             } else {
-                inputRef.current.placeholder = 'Задача должна иметь любое название';
+                inputRef.current.placeholder = isEnglishLanguage
+                    ? 'The task should have any name'
+                    : 'Задача должна иметь любое название';
                 setValid(false);
             }
         }
@@ -50,11 +53,11 @@ export function TaskForm() {
                 <input
                     className={`${styles.taskForm__input} ${valid ? '' : styles.placeholderStyle}`}
                     type="text"
-                    placeholder="Введите название задачи"
+                    placeholder={isEnglishLanguage ? 'Name a task' : 'Введите название задачи'}
                     ref={inputRef}
                     onChange={handleChange} />
                 <button className={`${styles.taskForm__btn} btn-reset`} >
-                    Добавить
+                    {isEnglishLanguage ? 'Add task' : 'Добавить'}
                 </button>
             </form>
         </div>

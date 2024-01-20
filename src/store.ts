@@ -12,6 +12,7 @@ export type RootState = {
     isTimerRun: boolean,
     isBreakTime: boolean,
     statistics: Array<IDayStat>,
+    isEnglishChosen: boolean,
 }
 
 export interface ITask {
@@ -43,6 +44,7 @@ const initialState: RootState = {
     isTimerRun: false,
     isBreakTime: false,
     statistics: [],
+    isEnglishChosen: true,
 }
 
 initialState.statistics = generateRandomStatistics();
@@ -70,6 +72,7 @@ const MOVE_TASK_DOWN = 'MOVE_TASK_DONW';
 const SET_POMODOR_LENGTH = 'SET_POMODOR_LENGTH';
 const SET_SHORT_BREAKTIME_LENGTH = 'SET_SHORT_BREAKTIME_LENGTH';
 const SET_LONG_BREAKTIME_LENGTH = 'SET_LONG_BREAKTIME_LENGTH';
+const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 
 export const createNewTask: ActionCreator<AnyAction> = (task: ITask) => ({
     type: CREATE_TASK,
@@ -179,6 +182,11 @@ export const setShortBreakTimeLength = (shortBreakTimeLength: number) => ({
 export const setLongBreakTimeLength = (longBreakTimeLength: number) => ({
     type: SET_LONG_BREAKTIME_LENGTH,
     payload: longBreakTimeLength,
+});
+
+export const changeLanguage = (status: boolean) => ({
+    type: CHANGE_LANGUAGE,
+    payload: status,
 });
 
 export const rootReducer: Reducer<RootState> = (state: RootState = initialState, action: AnyAction) => {
@@ -306,6 +314,11 @@ export const rootReducer: Reducer<RootState> = (state: RootState = initialState,
             return {
                 ...state,
                 longBreakTime: action.payload,
+            };
+        case CHANGE_LANGUAGE:
+            return {
+                ...state,
+                isEnglishChosen: action.payload,
             };
         default:
             return state;

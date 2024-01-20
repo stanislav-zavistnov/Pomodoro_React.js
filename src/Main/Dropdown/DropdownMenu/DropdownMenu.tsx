@@ -28,6 +28,7 @@ export function DropdownMenu(props: IDropdownProps) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [isDeleteWindowOpen, setIsDeleteWindowOpen] = useState(false);
     const arraySetIntervalsIds = useSelector<RootState, Array<NodeJS.Timer>>(state => state.arraySetIntervalsIds);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const isTimerRun = useSelector<RootState, boolean>(state => state.isTimerRun);
     const handleClearIntervals = () => {
         ClearAllSetIntervals(arraySetIntervalsIds);
@@ -118,7 +119,7 @@ export function DropdownMenu(props: IDropdownProps) {
                             onClick={handleIncrementCountPomodor}>
                             <img className={styles.dropdownList__itemImg} src={incrBtnIcon} alt="inrease" />
                             <p className={styles.dropdownList__itemText}>
-                                Увеличить
+                                {isEnglishLanguage ? 'Increase' : 'Увеличить'}
                             </p>
                         </button>
                     </li>
@@ -128,7 +129,7 @@ export function DropdownMenu(props: IDropdownProps) {
                             onClick={handleDecrementCountPomodor}>
                             <img className={styles.dropdownList__itemImg} src={decrBtnIcon} alt="inrease" />
                             <p className={styles.dropdownList__itemText}>
-                                Уменьшить
+                                {isEnglishLanguage ? 'Decrease' : 'Уменьшить'}
                             </p>
                         </button>
                     </li>
@@ -136,7 +137,7 @@ export function DropdownMenu(props: IDropdownProps) {
                         <button className={`btn-reset ${styles.dropdownList__itemBtn} ${styles.changeBtn}`}>
                             <img className={styles.dropdownList__itemImg} src={changeBtnIcon} alt="inrease" />
                             <p className={styles.dropdownList__itemText}>
-                                Редактировать
+                                {isEnglishLanguage ? 'Edit' : 'Редактировать'}
                             </p>
                             {isOpenChange && (
                                 <form className={styles.changeForm}>
@@ -144,10 +145,10 @@ export function DropdownMenu(props: IDropdownProps) {
                                         type="text"
                                         className={styles.changeInput}
                                         defaultValue={props.taskName}
-                                        placeholder="Нужно назвать задачу"
+                                        placeholder={isEnglishLanguage ? 'Name a task' : 'Нужно назвать задачу'}
                                         ref={changeInputRef} />
                                     <div className={styles.applyChangeBtn} onClick={handleChangeTaskName}>
-                                        ок
+                                        {isEnglishLanguage ? 'ok' : 'ок'}
                                     </div>
                                 </form>
                             )}
@@ -157,7 +158,7 @@ export function DropdownMenu(props: IDropdownProps) {
                         <button className={`btn-reset ${styles.dropdownList__itemBtn}`} onClick={handleMoveUpTask}>
                             <img className={styles.dropdownList__itemImg} src={arrowUpIcon} alt="move up" />
                             <p className={styles.dropdownList__itemText}>
-                                Поднять
+                                {isEnglishLanguage ? 'Up' : 'Поднять'}
                             </p>
                         </button>
                     </li>
@@ -165,7 +166,7 @@ export function DropdownMenu(props: IDropdownProps) {
                         <button className={`btn-reset ${styles.dropdownList__itemBtn}`} onClick={handleMoveDownTask}>
                             <img className={styles.dropdownList__itemImg} src={arrowDownIcon} alt="move down" />
                             <p className={styles.dropdownList__itemText}>
-                                Опустить
+                                {isEnglishLanguage ? 'Down' : 'Опустить'}
                             </p>
                         </button>
                     </li>
@@ -173,7 +174,7 @@ export function DropdownMenu(props: IDropdownProps) {
                         <button className={`btn-reset ${styles.dropdownList__itemBtn}`} onClick={handleOpenDeleteWindow}>
                             <img className={styles.dropdownList__itemImg} src={deleteBtnIcon} alt="inrease" />
                             <p className={styles.dropdownList__itemText}>
-                                Удалить
+                                {isEnglishLanguage ? 'Delete' : 'Удалить'}
                             </p>
                         </button>
                     </li>
@@ -188,17 +189,17 @@ export function DropdownMenu(props: IDropdownProps) {
                             <img src={cross} alt="Закрыть окно" />
                         </button>
                         <p className={styles.deleteWindow__title}>
-                            Удалить задачу?
+                            {isEnglishLanguage ? 'Delete task?' : 'Удалить задачу?'}
                         </p>
                         <button
                             className={`btn-reset ${styles.deleteWindow__deleteBtn}`}
                             onClick={() => { handleRemoveTask(); handleClearIntervals() }}>
-                            Удалить
+                            {isEnglishLanguage ? 'Delete' : 'Удалить'}
                         </button>
                         <button
                             className={`btn-reset ${styles.deleteWindow__cancelBtn}`}
                             onClick={handleCloseDeleteWindow}>
-                            Отмена
+                            {isEnglishLanguage ? 'Cancel' : 'Отмена'}
                         </button>
                     </div>
                 </div>

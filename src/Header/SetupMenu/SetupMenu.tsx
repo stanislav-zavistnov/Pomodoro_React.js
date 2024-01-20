@@ -12,6 +12,7 @@ export function SetupMenu(props: Iprops) {
     const pomodoroLength = useSelector<RootState, number>(state => state.pomodorLength);
     const shortBreakLength = useSelector<RootState, number>(state => state.shortBreakTime);
     const longBreakLength = useSelector<RootState, number>(state => state.longBreakTime);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const pomodorInputRef = useRef<HTMLInputElement>(null);
     const shortBreakInputRef = useRef<HTMLInputElement>(null);
     const longBreakInputRef = useRef<HTMLInputElement>(null);
@@ -57,12 +58,12 @@ export function SetupMenu(props: Iprops) {
     return (
         <div className={styles.setupWrap}>
             <p className={styles.setupTitle}>
-                Настройки
+                {isEnglishLanguage ? 'Settings' : 'Настройки'}
             </p>
             <form className={styles.setupForm}>
                 <div className={styles.setupInputWrap}>
                     <p className={styles.setupForm__input_descr}>
-                        Длительность помидора
+                        {isEnglishLanguage ? 'Pomodor length' : 'Длительность помидора'}
                     </p>
                     <div className={styles.inputWrap}>
                         <input className={styles.setupForm__input}
@@ -70,13 +71,13 @@ export function SetupMenu(props: Iprops) {
                             type='number'
                             defaultValue={convetTimeIntoMinute(pomodoroLength)} />
                         <p className={styles.setupForm__input_descr}>
-                            мин
+                            {isEnglishLanguage ? 'min' : 'мин'}
                         </p>
                     </div>
                 </div>
                 <div className={styles.setupInputWrap}>
                     <p className={styles.setupForm__input_descr}>
-                        Короткий перерыв
+                        {isEnglishLanguage ? 'Short break' : 'Короткий перерыв'}
                     </p>
                     <div className={styles.inputWrap}>
                         <input className={styles.setupForm__input}
@@ -84,13 +85,13 @@ export function SetupMenu(props: Iprops) {
                             type='number'
                             defaultValue={convetTimeIntoMinute(shortBreakLength)} />
                         <p className={styles.setupForm__input_descr}>
-                            мин
+                            {isEnglishLanguage ? 'min' : 'мин'}
                         </p>
                     </div>
                 </div>
                 <div className={styles.setupInputWrap}>
                     <p className={styles.setupForm__input_descr}>
-                        Длинный перерыв
+                        {isEnglishLanguage ? 'Long break' : 'Длинный перерыв'}
                     </p>
                     <div className={styles.inputWrap}>
                         <input className={styles.setupForm__input}
@@ -98,12 +99,12 @@ export function SetupMenu(props: Iprops) {
                             type='number'
                             defaultValue={convetTimeIntoMinute(longBreakLength)} />
                         <p className={styles.setupForm__input_descr}>
-                            мин
+                            {isEnglishLanguage ? 'min' : 'мин'}
                         </p>
                     </div>
                 </div>
                 <button className={`${styles.setupForm__button} btn-reset`} onClick={handleSubmit}>
-                    Применить
+                    {isEnglishLanguage ? 'Apply' : 'Применить'}
                 </button>
             </form>
             <button className={`${styles.setupForm__button} ${styles.setupForm__button_dev} btn-reset`}

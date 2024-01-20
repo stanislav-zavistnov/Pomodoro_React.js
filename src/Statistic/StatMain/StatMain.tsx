@@ -4,21 +4,23 @@ import pomodorIcon from '../../assets/images/pomodor.svg';
 import focusIcon from '../../assets/images/focus.svg';
 import pauseTime from '../../assets/images/pauseTime.svg';
 import pauseCount from '../../assets/images/pauseCount.svg';
-import { IDayStat } from "../../store";
+import { IDayStat, RootState } from "../../store";
 import { secondsToMinutes } from "../../utilits/secondsToMinutes";
+import { useSelector } from "react-redux";
 
 interface IPropsData {
     props: Array<IDayStat>
 }
 
 export function StatMain(props: IPropsData) {
-    const [currentDay, setCurrentDay] = useState('Понедельник');
     const [currentDayTaskTime, setCurrenDayTaskTime] = useState(secondsToMinutes(props.props[0].timeOnTask));
     const [currentDayPomodor, setCurrentDayPomodor] = useState(props.props[0].pomodorFinished);
     const mondayFocus = Math.round((1 - (props.props[0].timeOnPause / props.props[0].timeOnTask)) * 100);
     const [currentDayFocus, setCurrentDayFocus] = useState(mondayFocus ? mondayFocus : 0);
     const [currentDayTimeOnPause, setCurrentDayTimeOnPause] = useState(secondsToMinutes(props.props[0].timeOnPause));
     const [currentDayPauseCount, setCurrentDayPauseCount] = useState(props.props[0].countOfPauses);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
+    const [currentDay, setCurrentDay] = useState(isEnglishLanguage ? 'Monday' : 'Понедельник');
 
     function changeCurrentDay(day: string, index: number) {
         setCurrentDay(day);
@@ -45,8 +47,10 @@ export function StatMain(props: IPropsData) {
                     {currentDay}
                 </p>
                 <p className={styles.statMainDay__descr}>
-                    Вы работали над задачами в&nbsp;
-                    <span className={styles.statMainDay__descr_accent}>{`течение ${currentDayTaskTime} мин`}</span>
+                    {isEnglishLanguage ? 'Total worktime\u00A0' : 'Вы работали над задачами в\u00A0'}&nbsp;
+                    <span className={styles.statMainDay__descr_accent}>{isEnglishLanguage
+                        ? `${currentDayTaskTime} min`
+                        : `течение ${currentDayTaskTime} мин`}</span>
                 </p>
             </div>
             <div className={styles.statPomodor}>
@@ -58,7 +62,9 @@ export function StatMain(props: IPropsData) {
                 </div>
                 <div className={styles.statPomodor__titleWrap}>
                     <p className={styles.statPomodor__titleWrap__title}>
-                        {currentDayPomodor ? `${currentDayPomodor} помидора` : '0 помидор'}
+                        {currentDayPomodor
+                            ? `${currentDayPomodor} ${isEnglishLanguage ? 'pomodor' : 'помидора'}`
+                            : `0 ${isEnglishLanguage ? 'pomodor' : 'помидор'}`}
                     </p>
                 </div>
             </div>
@@ -66,84 +72,84 @@ export function StatMain(props: IPropsData) {
                 <div className={styles.statDiagram__line_one}>
                     <span className={styles.statDiagram__line_one_line}></span>
                     <span className={styles.statDiagram__line_one_descr}>
-                        1 ч 40 мин
+                        1 {isEnglishLanguage ? 'h' : 'ч'} 40 {isEnglishLanguage ? 'min' : 'мин'}
                     </span>
                 </div>
                 <div className={styles.statDiagram__line_two}>
                     <span className={styles.statDiagram__line_one_line}></span>
                     <span className={styles.statDiagram__line_one_descr}>
-                        1 ч 15 мин
+                        1 {isEnglishLanguage ? 'h' : 'ч'} 15 {isEnglishLanguage ? 'min' : 'мин'}
                     </span>
                 </div>
                 <div className={styles.statDiagram__line_three}>
                     <span className={styles.statDiagram__line_one_line}></span>
                     <span className={styles.statDiagram__line_one_descr}>
-                        50 мин
+                        50 {isEnglishLanguage ? 'min' : 'мин'}
                     </span>
                 </div>
                 <div className={styles.statDiagram__line_four}>
                     <span className={styles.statDiagram__line_one_line}></span>
                     <span className={styles.statDiagram__line_one_descr}>
-                        25 мин
+                        25 {isEnglishLanguage ? 'min' : 'мин'}
                     </span>
                 </div>
                 <div className={styles.statDiagram__bottom}></div>
                 <div className={styles.statDiagram__diagram}>
-                    <p className={`${styles.statDiagram__diagram_monday_descr} ${styles.diagramDay} ${currentDay === 'Понедельник' ? styles.activeDay : ''}`}>
-                        Пн
+                    <p className={`${styles.statDiagram__diagram_monday_descr} ${styles.diagramDay} ${currentDay === 'Понедельник' || 'Monday' ? styles.activeDay : ''}`}>
+                        {isEnglishLanguage ? 'Mon' : 'Пн'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_tuesday_descr} ${styles.diagramDay} ${currentDay === 'Вторник' ? styles.activeDay : ''}`}>
-                        Вт
+                        {isEnglishLanguage ? 'Tue' : 'Вт'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_wednesday_descr} ${styles.diagramDay} ${currentDay === 'Среда' ? styles.activeDay : ''}`}>
-                        Ср
+                        {isEnglishLanguage ? 'Wed' : 'Ср'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_thursday_descr} ${styles.diagramDay} ${currentDay === 'Четверг' ? styles.activeDay : ''}`}>
-                        Чт
+                        {isEnglishLanguage ? 'Thu' : 'Чт'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_friday_descr} ${styles.diagramDay} ${currentDay === 'Пятница' ? styles.activeDay : ''}`}>
-                        Пт
+                        {isEnglishLanguage ? 'Fri' : 'Пт'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_saturday_descr} ${styles.diagramDay} ${currentDay === 'Суббота' ? styles.activeDay : ''}`}>
-                        Сб
+                        {isEnglishLanguage ? 'Sat' : 'Сб'}
                     </p>
                     <p className={`${styles.statDiagram__diagram_sunday_descr} ${styles.diagramDay} ${currentDay === 'Воскресенье' ? styles.activeDay : ''}`}>
-                        Вс
+                        {isEnglishLanguage ? 'Sun' : 'Вс'}
                     </p>
                     <div className={`${styles.statDiagram__diagram_monday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Понедельник', 0) }}
-                            style={setDiagramHeight('Понедельник', 0)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Monday' : 'Понедельник', 0) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Monday' : 'Понедельник', 0)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_tuesday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Вторник', 1) }}
-                            style={setDiagramHeight('Вторник', 1)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Tuesday' : 'Вторник', 1) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Tuesday' : 'Вторник', 1)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_wednesday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Среда', 2) }}
-                            style={setDiagramHeight('Среда', 2)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Wednesday' : 'Среда', 2) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Wednesday' : 'Среда', 2)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_thursday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Четверг', 3) }}
-                            style={setDiagramHeight('Четверг', 3)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Thursday' : 'Четверг', 3) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Thursday' : 'Четверг', 3)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_friday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Пятница', 4) }}
-                            style={setDiagramHeight('Пятница', 4)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Friday' : 'Пятница', 4) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Friday' : 'Пятница', 4)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_saturday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Суббота', 5) }}
-                            style={setDiagramHeight('Суббота', 5)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Saturday' : 'Суббота', 5) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Saturday' : 'Суббота', 5)}></div>
                     </div>
                     <div className={`${styles.statDiagram__diagram_sunday_column} ${styles.diagramColumn}`}>
-                        <div onClick={() => { changeCurrentDay('Воскресенье', 6) }}
-                            style={setDiagramHeight('Воскресенье', 6)}></div>
+                        <div onClick={() => { changeCurrentDay(isEnglishLanguage ? 'Sunday' : 'Воскресенье', 6) }}
+                            style={setDiagramHeight(isEnglishLanguage ? 'Sunday' : 'Воскресенье', 6)}></div>
                     </div>
                 </div>
             </div>
             <div className={styles.statFocus}>
                 <div className={styles.statFocus__textWrap}>
                     <p className={styles.statFocus__textWrap_title}>
-                        Фокус
+                        {isEnglishLanguage ? 'Focus' : 'Фокус'}
                     </p>
                     <p className={styles.statFocus__textWrap_count}>
                         {`${currentDayFocus}%`}
@@ -154,10 +160,10 @@ export function StatMain(props: IPropsData) {
             <div className={styles.statPauseTime}>
                 <div className={styles.statFocus__textWrap}>
                     <p className={styles.statFocus__textWrap_title}>
-                        Время на паузе
+                        {isEnglishLanguage ? 'On pause' : 'Время на паузе'}
                     </p>
                     <p className={styles.statFocus__textWrap_count}>
-                        {`${currentDayTimeOnPause}м`}
+                        {`${currentDayTimeOnPause}${isEnglishLanguage ? 'm' : 'м'}`}
                     </p>
                 </div>
                 <img src={pauseTime} alt="icon" />
@@ -165,7 +171,7 @@ export function StatMain(props: IPropsData) {
             <div className={styles.statPauseCount}>
                 <div className={styles.statFocus__textWrap}>
                     <p className={styles.statFocus__textWrap_title}>
-                        Остановки
+                        {isEnglishLanguage ? 'Pauses' : 'Остановки'}
                     </p>
                     <p className={styles.statFocus__textWrap_count}>
                         {currentDayPauseCount}

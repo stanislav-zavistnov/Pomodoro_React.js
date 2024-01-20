@@ -36,6 +36,7 @@ export function TimerDisplay(props: ITimerDisplayProps) {
     const currentTaskTime = useSelector<RootState, number>(state => state.tasks[0] ? state.tasks[0].currentTime : 0);
     const currentTaskPomodor = useSelector<RootState, number>(state => state.tasks[0] ? state.tasks[0].countPomodor : 0);
     const secondTaskExist = useSelector<RootState, boolean>(state => state.tasks[1] ? true : false);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const [isNextTaskExist, setIsNextTaskExist] = useState(secondTaskExist);
     const [isShortBreak, setIsShortBreak] = useState(true);
     const handleIncrementCountPomodor = (e: React.MouseEvent) => {
@@ -177,43 +178,57 @@ export function TimerDisplay(props: ITimerDisplayProps) {
             {/* НАДПИСЬ ПОД ДИСПЛЕЕМ С ЗАДАЧЕЙ */}
             <div className={styles.timerDisplayDescrWrap}>
                 <p className={styles.timerDisplayTitle}>
-                    Задача -&nbsp;
+                    {isEnglishLanguage ? 'Task -\u00A0' : 'Задача -\u00A0'}
                 </p>
                 <p className={styles.timerDisplayDescr}>
-                    {props.titleTask ? props.titleTask : 'создать задачу =)'}
+                    {props.titleTask ? props.titleTask : isEnglishLanguage ? `\u00A0Create a task =)` : '\u00A0Создать задачу =)'}
                 </p>
             </div>
             {/* КНОПКИ УПРАВЛЕНИЯ СТАРТ\СТОП\ПАУЗА\ПРОДОЛЖИТЬ */}
             {props.taskId && (
                 <div className={styles.timerDisplayButtonsWrap}>
-                    {isTimerRun ?
-                        <button className={`btn-reset ${styles.startButton}`} onClick={pauseTheTimer}>
-                            Пауза
-                        </button> :
-                        (isBreakTime ?
-                            <button className={`btn-reset ${styles.startButton}`} onClick={breakTimer}>
-                                {isShortBreak ?
-                                    (shortBreakLength === currentBreakTime ? `Старт` : 'Продолжить') :
-                                    (longBreakLength === currentBreakTime ? `Старт` : 'Продолжить')}
-                            </button> :
-                            <button className={`btn-reset ${styles.startButton}`} onClick={timer}>
-                                {pomodorLength === currentTaskTime ? `Старт` : 'Продолжить'}
+                    {isTimerRun
+                        ? <button className={`btn-reset ${styles.startButton}`} onClick={pauseTheTimer}>
+                            {isEnglishLanguage ? 'Pause' : 'Пауза'}
+                        </button>
+                        : (isBreakTime
+                            ? <button className={`btn-reset ${styles.startButton}`} onClick={breakTimer}>
+                                {isShortBreak
+                                    ? (shortBreakLength === currentBreakTime
+                                        ? isEnglishLanguage ? 'Start' : `Старт`
+                                        : isEnglishLanguage ? 'Continue' : 'Продолжить')
+                                    : (longBreakLength === currentBreakTime
+                                        ? isEnglishLanguage ? 'Start' : `Старт`
+                                        : isEnglishLanguage ? 'Continue' : 'Продолжить')}
+                            </button>
+                            : <button className={`btn-reset ${styles.startButton}`} onClick={timer}>
+                                {pomodorLength === currentTaskTime
+                                    ? isEnglishLanguage ? 'Start' : `Старт`
+                                    : isEnglishLanguage ? 'Continue' : 'Продолжить'}
                             </button>
                         )};
-                    {isBreakTime ?
-                        <button
+                    {isBreakTime
+                        ? <button
                             className={`btn-reset ${styles.stopButton} ${isTimerRun ? styles.stopButton__active : ''}`}
                             onClick={skipBreak}>
-                            {isShortBreak ?
-                                (shortBreakLength === currentBreakTime ? `Пропустить` : 'Пропустить') :
-                                (longBreakLength === currentBreakTime ? `Пропустить` : 'Пропустить')}
-                        </button> :
-                        <button
+                            {isShortBreak
+                                ? (shortBreakLength === currentBreakTime
+                                    ? isEnglishLanguage ? 'Skip' : `Пропустить`
+                                    : isEnglishLanguage ? 'Skip' : `Пропустить`)
+                                : (longBreakLength === currentBreakTime
+                                    ? isEnglishLanguage ? 'Skip' : `Пропустить`
+                                    : isEnglishLanguage ? 'Skip' : `Пропустить`)}
+                        </button>
+                        : <button
                             className={`btn-reset ${styles.stopButton} ${isTimerRun ? styles.stopButton__active : ''}`}
-                            onClick={pomodorLength !== currentTaskTime ?
-                                (isTimerRun ? skipCurrentTaskTime : completeTask) :
-                                skipCurrentTaskTime}>
-                            {isTimerRun ? 'Стоп' : (pomodorLength !== currentTaskTime ? 'Сделано' : 'Стоп')}
+                            onClick={pomodorLength !== currentTaskTime
+                                ? (isTimerRun ? skipCurrentTaskTime : completeTask)
+                                : skipCurrentTaskTime}>
+                            {isTimerRun
+                                ? isEnglishLanguage ? 'Stop' : 'Стоп'
+                                : (pomodorLength !== currentTaskTime
+                                    ? isEnglishLanguage ? 'Completed' : 'Сделано'
+                                    : isEnglishLanguage ? 'Stop' : 'Стоп')}
                         </button>}
                 </div>
             )}

@@ -4,12 +4,13 @@ import styles from './header.module.css';
 import { Link } from 'react-router-dom';
 import { ClearAllSetIntervals } from '../utilits/clearAllSetIntarvals';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, setTimerRun } from '../store';
+import { RootState, changeLanguage, setTimerRun } from '../store';
 import { SetupMenu } from './SetupMenu/SetupMenu';
 export function Header() {
     const dispatch = useDispatch();
     const ref = useRef(null);
     const arraySetIntervalsIds = useSelector<RootState, Array<NodeJS.Timer>>(state => state.arraySetIntervalsIds);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const [isSetupOpen, setIsSetupOpen] = useState(false);
     function handleOpen() {
         setIsSetupOpen(!isSetupOpen);
@@ -21,6 +22,9 @@ export function Header() {
         ClearAllSetIntervals(arraySetIntervalsIds);
         dispatch(setTimerRun(false));
     }
+    const handleChangeLanguage = () => {
+        dispatch(changeLanguage(!isEnglishLanguage))
+    }
     return (
         <div className={`${styles.header} container`}>
             <Link to={'/'} className={styles.logoWrap}>
@@ -30,16 +34,21 @@ export function Header() {
                 </p>
             </Link>
             <div className={styles.buttonsWrap}>
+                <button className={`${styles.statisticWrap} btn-reset`} onClick={handleChangeLanguage}>
+                    <p className={styles.stat__descr}>
+                        {isEnglishLanguage ? 'EN' : 'RU'}
+                    </p>
+                </button>
                 <button className={`${styles.statisticWrap} btn-reset`} onClick={handleOpen} ref={ref}>
                     <div className={styles.gearIcon} />
                     <p className={styles.stat__descr}>
-                        Настройки
+                        {isEnglishLanguage ? 'Settings' : 'Настройки'}
                     </p>
                 </button>
                 <Link to={'/statistic'} className={styles.statisticWrap} onClick={handleClearIntervals}>
                     <div className={styles.statIcon} />
                     <p className={styles.stat__descr}>
-                        Статистика
+                    {isEnglishLanguage ? 'Statistic' : 'Статистика'}
                     </p>
                 </Link>
                 {isSetupOpen && (

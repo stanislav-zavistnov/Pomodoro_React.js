@@ -7,6 +7,7 @@ import { formattedMilliseconds } from "../../../utilits/formattedMilliseconds";
 export function TotalTime() {
     const tasksArray = useSelector<RootState, Array<ITask>>(state => state.tasks);
     const pomodoroLength = useSelector<RootState, number>(state => state.pomodorLength);
+    const isEnglishLanguage = useSelector<RootState, boolean>(state => state.isEnglishChosen);
     const [currentRemainingTime, setCurrentRemainingTime] = useState(0);
     useEffect(() => {
         if (!tasksArray[0]) {
@@ -27,7 +28,7 @@ export function TotalTime() {
     }, [tasksArray, pomodoroLength]);
     return (
         <span className={styles.totalTime}>
-            {formattedMilliseconds(currentRemainingTime)}
+            {formattedMilliseconds(currentRemainingTime, isEnglishLanguage)}
         </span>
     );
 }
